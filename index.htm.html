@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陳進榮｜自學開發者 · AI 輔助設計</title>
+<meta name="description" content="陳進榮——台灣自學開發者，運用 AI 工具設計與開發軟體。作品包括即時路況互助 App「烽火」與 AI 貨單掃描派車計算工具。開放合作洽談。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F8FA;
+    --surface:#FFFFFF;
+    --ink:#171E2E;
+    --ink-soft:#5B6472;
+    --line:#E4E8EF;
+    --accent:#2F5BEA;
+    --accent-soft:#EDF1FE;
+    --serif:'Noto Serif TC',serif;
+    --sans:'Noto Sans TC',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.75;font-size:16px}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  /* ── Nav ── */
+  nav{position:sticky;top:0;background:rgba(247,248,250,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-family:var(--mono);font-size:.9rem;font-weight:500}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;font-size:.9rem;color:var(--ink-soft)}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  /* ── Hero ── */
+  header{padding:96px 0 80px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.08em;margin-bottom:20px}
+  h1{font-family:var(--serif);font-weight:900;font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.3;letter-spacing:.01em}
+  h1 em{font-style:normal;color:var(--accent)}
+  .hero-sub{margin-top:24px;max-width:560px;color:var(--ink-soft);font-size:1.05rem}
+  .hero-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:11px 22px;border-radius:6px;font-size:.92rem;font-weight:500;transition:transform .15s ease,box-shadow .15s ease}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(47,91,234,.28)}
+  .btn-ghost{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ── Section ── */
+  section{padding:80px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px}
+  .sec-head h2{font-family:var(--serif);font-weight:900;font-size:1.7rem}
+  .sec-head .tag{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+
+  /* ── Projects ── */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s,box-shadow .2s}
+  .card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 28px rgba(23,30,46,.07)}
+  .card-top{display:flex;justify-content:space-between;align-items:center}
+  .card h3{font-size:1.08rem;font-weight:700}
+  .card .year{font-family:var(--mono);font-size:.75rem;color:var(--ink-soft)}
+  .card p{font-size:.92rem;color:var(--ink-soft);flex:1}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:var(--mono);font-size:.72rem;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:99px}
+  .card-link{font-size:.88rem;font-weight:500;color:var(--accent)}
+  .card-link:hover{text-decoration:underline}
+
+  /* ── About + Changelog timeline（招牌元素）── */
+  .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
+  .about-text p+p{margin-top:16px}
+  .about-text{color:var(--ink-soft)}
+  .about-text strong{color:var(--ink)}
+
+  .changelog{position:relative;padding-left:28px;border-left:2px solid var(--line)}
+  .log{position:relative;padding-bottom:32px}
+  .log:last-child{padding-bottom:0}
+  .log::before{content:'';position:absolute;left:-35px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2.5px solid var(--accent)}
+  .log .ver{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:500}
+  .log h4{font-size:1rem;font-weight:700;margin:2px 0 4px}
+  .log p{font-size:.9rem;color:var(--ink-soft)}
+
+  /* ── Footer ── */
+  footer{border-top:1px solid var(--line);padding:56px 0;text-align:center}
+  footer .cta-line{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:20px}
+  .socials{display:flex;justify-content:center;gap:22px;font-size:.9rem;color:var(--ink-soft);margin-bottom:28px}
+  .socials a:hover{color:var(--accent)}
+  .copy{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+
+  /* ── Reveal on scroll ── */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+  @media (max-width:720px){
+    .about-grid{grid-template-columns:1fr}
+    .nav-links{gap:18px}
+    header{padding:72px 0 60px}
+    section{padding:60px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">chen.jinrong<span>_</span></a>
+    <div class="nav-links">
+      <a href="#works">作品集</a>
+      <a href="#about">關於我</a>
+      <a href="#contact">聯絡</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <p class="eyebrow">SELF-TAUGHT · AI-ASSISTED BUILDER</p>
+    <h1>不是本科出身，<br>我用 <em>AI</em> 把想法變成軟體。</h1>
+    <p class="hero-sub">
+      嗨，我是陳進榮。一名自學開發者，擅長運用 AI 工具設計並打造軟體產品——
+      從發想、介面設計到完成上線，證明學歷不是門檻，動手做才是。
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#works">看我的作品 →</a>
+      <a class="btn btn-ghost" href="#contact">與我聯絡</a>
+    </div>
+  </div>
+</header>
+
+<section id="works">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>作品集</h2>
+      <span class="tag">// 每個作品都是一次實驗</span>
+    </div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>烽火 App</h3><span class="year">2026</span>
+        </div>
+        <p>即時路況互助 App——用路人回報路況，經 AI 審核後推播提醒附近駕駛。整合 LINE 群組回報、Gemini AI 訊息解析與即時地圖，提供快速通報、拍照通報與駕駛模式。從命名、設計到開發全程與 AI 協作完成。</p>
+        <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span><span class="chip">Gemini AI</span><span class="chip">LINE Bot</span><span class="chip">n8n</span></div>
+        <a class="card-link" href="#" target="_blank" rel="noopener">查看作品 ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>貨單掃描派車計算</h3><span class="year">2026</span>
+        </div>
+        <p>物流調度工具——上傳紙本貨單照片，AI 視覺辨識各倉收貨明細（重量、板數、才數），自動彙總統計，並依車隊配置產生派車建議，車輛不足時提示跨倉調度。解決人工核算耗時易錯的痛點。</p>
+        <div class="chips"><span class="chip">React</span><span class="chip">AI 視覺辨識</span><span class="chip">OCR</span><span class="chip">物流調度</span></div>
+        <a class="card-link" href="#" target="_blank" rel="noopener">查看作品 ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>下一個作品，籌備中</h3><span class="year">Coming Soon</span>
+        </div>
+        <p>持續投入大量時間自學研發——快速迭代、反覆測試，在每一次試錯中累積實力。如果你有 App 或工具的想法想實現，歡迎找我聊聊：從研發、測試到完成上線，我都能協助，合作方式彈性好談。</p>
+        <div class="chips"><span class="chip">開放合作</span><span class="chip">App 開發</span><span class="chip">歡迎討論</span></div>
+        <a class="card-link" href="#contact">與我聯絡 ↓</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>關於我</h2>
+      <span class="tag">// changelog：我的學習歷程</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p><strong>我相信自學是這個時代最好的入場券。</strong></p>
+        <p>沒有資訊背景，我從零開始，透過線上資源與 AI 工具一步步學會設計與開發軟體。AI 對我而言不是捷徑，而是放大器——它讓我能專注在「想做什麼」，並更快學會「怎麼做」。</p>
+        <p>這個網站本身，也是我與 AI 協作完成的作品之一。</p>
+      </div>
+      <div class="changelog reveal">
+        <div class="log">
+          <span class="ver">v0.1</span>
+          <h4>起點</h4>
+          <p>寫下你如何開始的。例如：因為想做出自己的小工具，開始自學程式。</p>
+        </div>
+        <div class="log">
+          <span class="ver">v0.5</span>
+          <h4>遇見 AI 工具</h4>
+          <p>例如：開始用 Claude / ChatGPT 輔助學習與開發，效率大幅提升。</p>
+        </div>
+        <div class="log">
+          <span class="ver">v1.0</span>
+          <h4>第一個完整作品</h4>
+          <p>例如：獨立完成第一個上線的專案，從設計到部署。</p>
+        </div>
+        <div class="log">
+          <span class="ver">v2.0 — 現在</span>
+          <h4>持續迭代中</h4>
+          <p>例如：正在探索更多 AI 應用，尋找合作與工作機會。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="cta-line">有想法想一起實現嗎？歡迎聯絡我。</p>
+    <div class="socials">
+      <a href="tel:+886986131470">📞 0986-131-470</a>
+      <a href="https://line.me/ti/p/~0986131470" target="_blank" rel="noopener">💬 LINE：0986131470</a>
+    </div>
+    <p class="copy">© 2026 陳進榮 CHEN JIN-RONG · Designed &amp; built with AI</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
